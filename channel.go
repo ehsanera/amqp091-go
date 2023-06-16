@@ -1178,7 +1178,7 @@ to respond to any exceptions.
 Optional amqp.Table of arguments that are specific to the server's implementation of
 the exchange can be sent for exchange types that require extra parameters.
 */
-func (ch *Channel) ExchangeDeclare(name, kind string, durable, autoDelete, internal, noWait bool, args Table) error {
+func (ch *Channel) ExchangeDeclare(name string, kind ExchangeType, durable, autoDelete, internal, noWait bool, args Table) error {
 	if err := args.Validate(); err != nil {
 		return err
 	}
@@ -1205,7 +1205,7 @@ exchange is assumed by RabbitMQ to already exist, and attempting to connect to a
 non-existent exchange will cause RabbitMQ to throw an exception. This function
 can be used to detect the existence of an exchange.
 */
-func (ch *Channel) ExchangeDeclarePassive(name, kind string, durable, autoDelete, internal, noWait bool, args Table) error {
+func (ch *Channel) ExchangeDeclarePassive(name string, kind ExchangeType, durable, autoDelete, internal, noWait bool, args Table) error {
 	if err := args.Validate(); err != nil {
 		return err
 	}

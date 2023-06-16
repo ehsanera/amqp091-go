@@ -825,7 +825,7 @@ func (msg *channelCloseOk) read(r io.Reader) (err error) {
 type exchangeDeclare struct {
 	reserved1  uint16
 	Exchange   string
-	Type       string
+	Type       ExchangeType
 	Passive    bool
 	Durable    bool
 	AutoDelete bool
@@ -850,9 +850,6 @@ func (msg *exchangeDeclare) write(w io.Writer) (err error) {
 	}
 
 	if err = writeShortstr(w, msg.Exchange); err != nil {
-		return
-	}
-	if err = writeShortstr(w, msg.Type); err != nil {
 		return
 	}
 
@@ -895,9 +892,6 @@ func (msg *exchangeDeclare) read(r io.Reader) (err error) {
 	}
 
 	if msg.Exchange, err = readShortstr(r); err != nil {
-		return
-	}
-	if msg.Type, err = readShortstr(r); err != nil {
 		return
 	}
 

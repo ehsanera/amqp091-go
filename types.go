@@ -13,13 +13,19 @@ import (
 
 const DefaultExchange = ""
 
+type ExchangeType int
+
 // Constants for standard AMQP 0-9-1 exchange types.
 const (
-	ExchangeDirect  = "direct"
-	ExchangeFanout  = "fanout"
-	ExchangeTopic   = "topic"
-	ExchangeHeaders = "headers"
+	ExchangeDirect ExchangeType = iota
+	ExchangeFanout
+	ExchangeTopic
+	ExchangeHeaders
 )
+
+func (exchangeType ExchangeType) String() string {
+	return [...]string{"direct", "fanout", "topic", "headers"}[exchangeType]
+}
 
 var (
 	// ErrClosed is returned when the channel or connection is not open

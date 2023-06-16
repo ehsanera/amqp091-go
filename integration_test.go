@@ -1746,12 +1746,12 @@ func TestExchangeDeclarePrecondition(t *testing.T) {
 
 		err = ch.ExchangeDeclare(
 			exchange,
-			"direct", // exchangeType
-			false,    // durable
-			true,     // auto-delete
-			false,    // internal
-			false,    // noWait
-			nil,      // arguments
+			ExchangeDirect, // exchangeType
+			false,          // durable
+			true,           // auto-delete
+			false,          // internal
+			false,          // noWait
+			nil,            // arguments
 		)
 		if err != nil {
 			t.Fatalf("Could not initially declare exchange")
@@ -1759,7 +1759,7 @@ func TestExchangeDeclarePrecondition(t *testing.T) {
 
 		err = ch.ExchangeDeclare(
 			exchange,
-			"direct",
+			ExchangeDirect,
 			true, // different durability
 			true,
 			false,
